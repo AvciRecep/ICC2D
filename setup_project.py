@@ -31,6 +31,7 @@ OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 """
 
 import os
+import sys
 
 
 def find_and_replace(filename, old_string, new_string):
@@ -55,8 +56,11 @@ def ask_for_response(question):
     yes = {'yes', 'y', 'ye', ''}
     no = {'no', 'n'}
 
-    # Take the lower case raw input
-    choice = raw_input().lower()
+    # Take the lower case raw input - check for version
+    if sys.version_info[0] < 3:
+    	choice = raw_input().lower()
+    else:
+    	choice = input().lower()
 
     # Decide on the choice
     if choice in yes:
